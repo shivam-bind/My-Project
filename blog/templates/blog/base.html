@@ -19,6 +19,9 @@
                     </a>
                 {% endif %}
                 <h1><a href="/">Django blog post</a></h1>
+                <a href="{% url 'post_new' %}" class="top-menu">
+                        {% include './icons/file-earmark-plus.svg' %}
+                    </a>
             </div>
         </header>
         <main class="container">
