@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-yzl6a4cmn#)zb0n9=_ltg3q%e)0kuax*gd0$i50q)wga+x(_80
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['shivam7986.pythonanywhere.com']
-
+ALLOWED_HOSTS = []
+# 'shivam7986.pythonanywhere.com'
 
 # Application definition
 
@@ -112,7 +112,8 @@ USE_I18N = True
 
 USE_TZ = True
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'post-list'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 
 # Static files (CSS, JavaScript, Images)

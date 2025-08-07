@@ -23,6 +23,12 @@ body{
     text-decoration: none;
 }
 
+.container {
+    display: flex;
+    justify-content:space-between;
+    
+}
+
 h1,
 h2,
 h3,
@@ -43,13 +49,41 @@ h4 {
     width: 100%;
 }
 
-.top-menu,
+ul {
+    width: 50%;
+    display: flex;
+}
+ul > li {
+    margin-right: 5px;
+    margin-left: 10px;
+}
+
+.button-logout{
+    background-color: #C25100;
+    color: #ffffff;
+    font-size: 15px;
+    text-decoration: none;
+    border: none;
+}
+
+.top-menu
 .top-menu:hover,
 .top-menu:visited {
     color: #ffffff;
-    float: right;
-    font-size: 26px;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.top-menu > li > a {
+    color: #ffffff;
+    font-size: 15px;
     margin-right: 20px;
+    text-decoration: none;
+}
+
+
+.newPost {
+    width: 30px;
 }
 
 .post {
@@ -77,4 +111,17 @@ h4 {
 .btn-secondary:hover {
     color: #FFFFFF;
     background-color: #C25100;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+
+}
+
+.newPost {
+    display: flex;
 }
