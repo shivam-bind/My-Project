@@ -54,3 +54,40 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+
+
+@login_required
+def select_post(request):
+    posts = Post.objects.all()
+    selected_post = None
+
+    if request.method == "POST":
+        post_id = request.POST.get('selected_post')
+        if post_id:
+            selected_post = get_object_or_404(Post, id=post_id)
+
+    return render(request, 'registration/select_post.html', {
+        'posts': posts,
+        'selected_post': selected_post
+    })
+
+@login_required
+def edit_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('select_post')
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'blog/edit_post.html', {'form': form})
+
+@login_required
+def delete_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        post.delete()
+        return redirect('select_post')
+    return render(request, 'blog/delete_post.html', {'post': post})
+

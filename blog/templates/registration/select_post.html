@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+
+    <h2>Select a Blog Post</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <select name="selected_post">
+            <option value="">-- Select Post --</option>
+            {% for post in posts %}
+                <option value="{{ post.id }}" {% if selected_post and selected_post.id == post.id %}selected{% endif %}>
+                    {{ post.title }}
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit">Load Post</button>
+    </form>
+
+    {% if selected_post %}
+        <h3>{{ selected_post.title }}</h3>
+        <p>{{ selected_post.content }}</p>
+        <div class="actions">
+            <a href="{% url 'edit_post' selected_post.id %}" class="edit-btn">Edit</a>
+            <a href="{% url 'delete_post' selected_post.id %}" class="delete-btn">Delete</a>
+        </div>
+    {% endif %}
+{% endblock%}
