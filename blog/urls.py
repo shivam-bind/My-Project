@@ -3,6 +3,7 @@ from . import views
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
+    path('', views.home, name='home'),
     path('',views.post_list, name='post-list'),
     path('post/<int:pk>/', views.post_detail, name='post_detail'),
     path('post/new/', views.post_new, name='post_new'),
