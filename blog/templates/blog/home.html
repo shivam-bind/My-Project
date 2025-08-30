@@ -1,7 +1,8 @@
         {% extends 'blog/base.html' %}
         {% block content %}
+        {% load static %}
 
-        <header class="flex justify-between ml-2 mr-2 mb-8 p-0 border-b-4 border-red-500 h-10 rounded-md">
+        <!-- <header class="flex justify-between ml-2 mr-2 p-0 border-b-4 border-red-500 h-10 rounded-md">
             <a href="#" class="text-[18px] font-sans mx-0"><strong class="text-[18px] font-sans">Editorial</strong> by HTML5 UP</a>
             <ul class="flex space-x-4 mr-1 justify-end">
                 <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
@@ -11,4 +12,8 @@
                 <li><a href="#"><i class="fa-solid fa-m"></i></a></li>
             </ul>
         </header>
+        <section class="font-sans h-auto">
+            <h1 class="font-sans">Generic</h1>
+            <img src="{% static 'Image/Generic.jpg' %}" alt="generic" class="w-full">
+        </section> -->
         {% endblock %}
