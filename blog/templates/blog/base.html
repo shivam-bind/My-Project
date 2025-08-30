@@ -11,7 +11,7 @@
         <!-- <link rel="stylesheet" href="{% static 'css/blog.css' %}"> -->
     </head>
 
-    <body class="p-8 mt-4">
+    <body class="p-4 mt-4">
         <header class="flex justify-between ml-2 mr-2 p-0 mb-8 border-b-4 border-red-500 h-10 rounded">
 
             <a href="#" class="text-[18px] font-sans mx-0 "><strong class="text-[18px] font-sans">Editorial</strong> by HTML5 UP</a>
@@ -27,10 +27,9 @@
 
         <section class="font-sans h-auto p-2">
             <div class="flex justify-between items-center justify-center">
-                <h1 class="mt-4 mb-12 ml-0 text-5xl font-bold">Generic</h1>
-                    <!-- <ul class="flex justify-between items-center justify-center mb-8 w-80">
+                    <ul class="flex justify-between items-center justify-center mb-8 w-80">
                         
-                                <li><a href="{% url 'post-list' %}" >Home</a></li>
+                            <li><a href="{% url 'post-list' %}" >Home</a></li>
                             {% if user.is_authenticated %}
                                 
                                 <li><a href="{% url 'post_new' %}" class="">Post</a></li>
@@ -47,92 +46,16 @@
                             <li><a href="{% url 'signup' %}">SignUp</a></li>
                             
                             {% endif %}
-                    </ul> -->
-            </div>
-
-            <img src="{% static 'Image/Generic.jpg' %}" alt="generic" class="w-full mb-12 rounded">
-            <p class="mb-8 text-zinc-500 text-sm">
-                Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit.
-            </p>
-            <p class="mb-8 text-zinc-500 text-sm">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.
-            </p>
-            <p class="mb-8 text-zinc-500 text-sm">
-                Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.
-            </p>
-            <hr class="mb-8 text-zinc-500 text-sm">
-
-            <h2 class="font-sans mt-4 mb-8 text-3xl font-semibold">Interdum sed dapibus</h2>
-            <p class="mb-8 text-zinc-500 text-sm">
-                Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit.
-            </p>
-            <p class="mb-8 text-zinc-500 text-sm">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, 
-                per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.
-            </p>
-            <hr class="mb-8 text-zinc-500 text-sm">
-
-            <h2 class="font-sans mt-4 mb-8 text-3xl font-semibold">Magna etiam veroeros</h2>
-            <p class="mb-8 text-zinc-500 text-sm">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.
-            </p>
-            <p class="mb-8 text-zinc-500 text-sm">
-                Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.
-            </p>
-            <hr class="mb-8 text-zinc-500 text-sm">
-
-            <h2 class="font-sans mt-4 mb-8 text-3xl font-semibold">Lorem aliquam bibendum</h2>
-            <p class="mb-8 text-zinc-500 text-sm">
-                Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit.
-            </p>
-            <p class="mb-8 text-zinc-500 text-sm">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.
-            </p>
-        </section>
-
-
-        <!-- <header class="page-header">
-            <div class="container">
-               
-                <h1><a href="/"> blog post </a></h1>
-
-                <nav class="navbar">
-                    <ul class="top-menu">
-                        
-                                <li><a href="{% url 'post-list' %}" >Home</a></li>
-                            {% if user.is_authenticated %}
-                                
-                                <li><a href="{% url 'post_new' %}" class="newPost">Post</a></li>
-                                <li><a href="{% url 'select_post' %}">Select.Post</a></li>
-                                <li>
-                                    <form method="post" action="{% url 'logout' %}">
-                                        {% csrf_token %}
-                                        <button type="submit" class="button-logout">Logout</button>
-                                    
-                                    </form>
-                                </li>
-                                {% else %}
-                            <li><a href="{% url 'login' %}">Login</a></li>
-                            <li><a href="{% url 'signup' %}">SignUp</a></li>
-                            
-                            {% endif %}
                     </ul>
-                </nav>
-
             </div>
-        </header> -->
 
         
-        <!-- <main class="container w-full flex justify-between">
+        <main class="w-full flex justify-between m-0 p-0 ">
             
-            <div class="row w-full">
-                
-                <div class="col">
+            <div class="w-full">
                     {% block content %}
                     {% endblock %}
-                </div>
             </div>
-        </main> -->
+        </main>
     </body>
 </html>

@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-yzl6a4cmn#)zb0n9=_ltg3q%e)0kuax*gd0$i50q)wga+x(_80
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['shivam7986.pythonanywhere.com']
-# 
+ALLOWED_HOSTS = []
+# 'shivam7986.pythonanywhere.com'
 
 # Application definition
 
@@ -120,10 +120,11 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-# STATICFILES_DIRS= os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
