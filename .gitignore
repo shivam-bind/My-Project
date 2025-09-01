@@ -1,1 +1,16 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environment
 env/
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+db.sqlite3
+
+# VSCode / IDE
+.vscode/
+.idea/
