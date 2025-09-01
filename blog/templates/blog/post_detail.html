@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 <article class="font-sans mb-8 w-full">
-    <h1 class="mt-0 mb-4 ml-0 text-5xl font-bold hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition">{{ post.title }}</h1>
+    <h1 class="mt-4 mb-4 ml-0 text-5xl font-bold hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition">{{ post.title }}</h1>
 
     {% if post.image %}
         <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full mb-12 rounded">

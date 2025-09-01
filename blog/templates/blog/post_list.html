@@ -4,8 +4,7 @@
     {% block content %}
     {% for post in posts %}
     <article class="font-sans">
-        <h2 class="mt-0 mb-4 ml-0 text-5xl font-bold hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition">
->>>>>>> fa29263 ( update the ui page and add some feature)
+        <h2 class="mt-4 mb-4 ml-0 text-5xl font-bold hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition">
             <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
         </h2>
 
