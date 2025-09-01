@@ -10,34 +10,21 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- <link rel="stylesheet" href="{% static 'css/blog.css' %}"> -->
     </head>
-
     <body class="p-4 mt-4">
-        <header class="flex justify-between ml-2 mr-2 p-0 mb-8 border-b-4 border-red-500 h-10 rounded">
+        <header class="flex justify-between ml-0 mr-0 mt-0 p-0 mb-8 border-b-4 border-red-500 h-20 rounded  sticky top-0 bg-white shadow-md">
 
-            <a href="#" class="text-[18px] font-sans mx-0 "><strong class="text-[18px] font-sans">Editorial</strong> by HTML5 UP</a>
-            <ul class="flex space-x-4 mr-1 justify-end">
-                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-snapchat"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fa-solid fa-m"></i></a></li>
-            </ul>
-        </header>
-
-
-        <section class="font-sans h-auto p-2">
-            <div class="flex justify-between items-center justify-center">
-                    <ul class="flex justify-between items-center justify-center mb-8 w-80">
+            <div class="flex justify-between items-center justify-center ml-2 mb-2">
+                    <ul class="flex justify-between items-center justify-center mb-2 mt-4 w-90">
                         
-                            <li><a href="{% url 'post-list' %}" >Home</a></li>
+                            <li><a href="{% url 'post-list' %}" class=" px-3 py-2 hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition {% if request.resolver_match.url_name == 'post-list' %} bg-red-500 text-white {% endif %}">Home</a></li>
                             {% if user.is_authenticated %}
                                 
-                                <li><a href="{% url 'post_new' %}" class="">Post</a></li>
-                                <li><a href="{% url 'select_post' %}">Select.Post</a></li>
+                                <li><a href="{% url 'post_new' %}" class=" px-3 py-2 hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition {% if request.resolver_match.url_name == 'post_new' %} bg-red-500 text-white {% endif %}">New-Post</a></li>
+                                <li><a href="{% url 'select_post' %}" class=" px-3 py-2 hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition {% if request.resolver_match.url_name == 'select_post' %} bg-red-500 text-white {% endif %}">Edit/Delete</a></li>
                                 <li>
                                     <form method="post" action="{% url 'logout' %}">
                                         {% csrf_token %}
-                                        <button type="submit" class="button-logout">Logout</button>
+                                        <button type="submit" class=" px-3 py-2 hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition {% if request.resolver_match.url_name == 'logout' %} bg-red-500 text-white {% endif %}">Logout</button>
                                     
                                     </form>
                                 </li>
@@ -49,7 +36,16 @@
                     </ul>
             </div>
 
-        
+            <div class="flex justify-between items-center justify-center ml-2 mb-2 mr-2">
+            <ul class="flex space-x-4 mr-1 justify-end items-center justify-center mb-2 mt-4">
+                <li><a href="#"><i class="fa-brands fa-twitter hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-facebook-f hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-snapchat hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-instagram hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-m hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition"></i></a></li>
+            </ul>
+            </div>
+        </header>
         <main class="w-full flex justify-between m-0 p-0 ">
             
             <div class="w-full">

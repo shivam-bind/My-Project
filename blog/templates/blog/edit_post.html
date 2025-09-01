@@ -2,7 +2,37 @@
 
 {% block content %}
 
-{% if user.is_authenticated%}
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-lg">
+    
+    {% if user.is_authenticated %}
+      <!-- Heading -->
+      <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">
+        Edit Post
+      </h2>
+
+      <!-- Form -->
+      <form method="POST" class="space-y-4">
+        {% csrf_token %}
+        
+        <!-- Render Django form fields -->
+        <div class="space-y-4">
+          {{ form.as_p }}
+        </div>
+
+        <!-- Save Button -->
+        <button type="submit" 
+                class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+          Save Changes
+        </button>
+      </form>
+    {% endif %}
+    
+  </div>
+</div>
+
+
+<!-- {% if user.is_authenticated%}
    
 
    <h2>Edit Post</h2>
@@ -12,5 +42,5 @@
         <button type="submit">Save Changes</button>
     </form>
 
-{%endif%}
+{%endif%} -->
 {% endblock %}

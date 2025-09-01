@@ -1,12 +1,17 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Post
+
+from .forms import PostForm, BlogSubSectionForm
 from .forms import PostForm, BlogSubSectionForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+# from django.contrib.auth.views import LoginView
 
 
-# def home(request):
-#     return render(request, "blog/home.html",)
+
+# class CustomLoginView(LoginView):
+#     template_name = "blog/login.html"
+#     authentication_form = CustomLoginForm
 
 
 
@@ -58,7 +63,6 @@ def post_edit(request, pk):
         if form.is_valid():
             post = form.save(commit=True)
             post.author = request.user
-            # post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
@@ -84,6 +88,14 @@ def select_post(request):
 @login_required
 def edit_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    if post.author != request.user:
+        return redirect('post_detail')  # unauthorized access → redirect
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('post_detail', pk=post.pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
@@ -91,11 +103,17 @@ def edit_post(request, pk):
             return redirect('select_post')
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/edit_post.html', {'form': form})
+    return render(request, 'blog/edit_post.html', {'form': form , 'post':post})
 
 @login_required
 def delete_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    if post.author != request.user:
+        return redirect('post_detail')
+
+    if request.method == 'POST':
+        post.delete()
+        return redirect('post_detail')
     if request.method == "POST":
         post.delete()
         return redirect('select_post')
