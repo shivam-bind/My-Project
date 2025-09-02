@@ -2,19 +2,18 @@
 
 {% block content %}
 
-
-<div class="flex items-center justify-center min-h-screen bg-gray-100">
-  <div class="bg-white shadow-lg rounded-2xl p-8 w-96">
-    <h2 class="text-2xl font-bold text-center mb-6">Create an Account</h2>
+<div class="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+  <div class="bg-white shadow-lg rounded-2xl p-6 sm:p-8 max-w-md w-full">
+    <h2 class="text-2xl sm:text-3xl font-bold text-center mb-6">Create an Account</h2>
     
     <form method="post" class="space-y-4">
       {% csrf_token %}
 
       <!-- Username -->
       <div>
-        <label for="id_username" class="block text-sm font-medium text-gray-700">Username</label>
+        <label for="id_username" class="block text-sm sm:text-base font-medium text-gray-700">Username</label>
         <input type="text" name="username" id="id_username"
-               class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+               class="w-full mt-1 p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                required>
         {% if form.username.errors %}
           <p class="text-red-500 text-sm mt-1">{{ form.username.errors.0 }}</p>
@@ -23,9 +22,9 @@
 
       <!-- Password -->
       <div>
-        <label for="id_password1" class="block text-sm font-medium text-gray-700">Password</label>
+        <label for="id_password1" class="block text-sm sm:text-base font-medium text-gray-700">Password</label>
         <input type="password" name="password1" id="id_password1"
-               class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+               class="w-full mt-1 p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                required>
         {% if form.password1.errors %}
           <p class="text-red-500 text-sm mt-1">{{ form.password1.errors.0 }}</p>
@@ -34,99 +33,38 @@
 
       <!-- Confirm Password -->
       <div>
-        <label for="id_password2" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+        <label for="id_password2" class="block text-sm sm:text-base font-medium text-gray-700">Confirm Password</label>
         <input type="password" name="password2" id="id_password2"
-               class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+               class="w-full mt-1 p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                required>
-         {% if form.password2.errors %}
+        {% if form.password2.errors %}
           <p class="text-red-500 text-sm mt-1">{{ form.password2.errors.0 }}</p>
         {% endif %}
       </div>
 
       <!-- Signup Button -->
       <button type="submit" 
-              class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+              class="w-full bg-blue-600 text-white py-2 sm:py-3 rounded-lg hover:bg-blue-700 transition text-sm sm:text-base">
         Sign Up
       </button>
     </form>
 
-     <!-- Non-field errors (like password mismatch) -->
+    <!-- Non-field errors (like password mismatch) -->
     {% if form.non_field_errors %}
-      <div class="mt-3 text-red-600 text-sm text-center">
+      <div class="mt-3 text-red-600 text-sm sm:text-base text-center">
         {% for error in form.non_field_errors %}
           <p>{{ error }}</p>
         {% endfor %}
       </div>
     {% endif %}
 
-    <p class="mt-4 text-center text-sm">
+    <p class="mt-4 text-center text-sm sm:text-base">
       Already have an account? 
       <a href="{% url 'login' %}" class="text-blue-600 font-medium hover:underline">Login</a>
     </p>
   </div>
 </div>
 
-
-
-
-
-
-
-
-<!-- <div class="flex items-center justify-center min-h-screen bg-gray-100">
-  <div class="w-full max-w-md p-8 bg-white rounded-2xl shadow-lg">
-    <h2 class="mb-6 text-2xl font-bold text-center text-gray-800">Create an Account</h2>
-
-    <form method="post" class="space-y-4">
-      {% csrf_token %}
-      
-      Username Field
-      <div>
-        <label for="id_username" class="block text-sm font-medium text-gray-700">Username</label>
-        {{ form.username }}
-        {% if form.username.errors %}
-          <p class="text-sm text-red-500">{{ form.username.errors }}</p>
-        {% endif %}
-      </div>
-
-      Password1 Field
-      <div>
-        <label for="id_password1" class="block text-sm font-medium text-gray-700">Password</label>
-        {{ form.password1 }}
-        {% if form.password1.errors %}
-          <p class="text-sm text-red-500">{{ form.password1.errors }}</p>
-        {% endif %}
-      </div>
-
-      Password2 Field
-      <div>
-        <label for="id_password2" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-        {{ form.password2 }}
-        {% if form.password2.errors %}
-          <p class="text-sm text-red-500">{{ form.password2.errors }}</p>
-        {% endif %}
-      </div>
-
-      <button type="submit" 
-        class="w-full px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300">
-        Sign Up
-      </button>
-    </form>
-
-    <p class="mt-4 text-sm text-center text-gray-600">
-      Already have an account?
-      <a href="{% url 'login' %}" class="text-blue-600 hover:underline">Login</a>
-    </p>
-  </div>
-</div> -->
-
-
-
-  <!-- <h2>Sign Up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-  </form>
-  <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p> -->
 {% endblock %}
+
+

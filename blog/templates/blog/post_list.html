@@ -1,31 +1,38 @@
+{% extends 'blog/base.html' %}
 
-    {% extends 'blog/base.html' %}
-
-    {% block content %}
-    {% for post in posts %}
-    <article class="font-sans">
-        <h2 class="mt-4 mb-4 ml-0 text-5xl font-bold hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition">
+{% block content %}
+{% if user.is_authenticated %}
+  {% for post in posts %}
+    <article class="font-sans mb-10 px-4 sm:px-6 lg:px-8">
+        <!-- Post Title -->
+        <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 hover:text-red-500 visited:text-purple-600 transition">
             <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
         </h2>
 
+        <!-- Post Image -->
         {% if post.image %}
-            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full mb-12 rounded">
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full mb-6 sm:mb-8 rounded-lg object-cover">
         {% endif %}
 
-        <p class="mb-4 text-zinc-500 text-sm">{{ post.content|linebreaksbr }}</p>
+        <!-- Post Content -->
+        <p class="mb-4 sm:mb-6 text-zinc-500 text-sm sm:text-base">{{ post.content|linebreaksbr }}</p>
         <hr class="mb-4">
 
-        <!-- Subsections Loop -->
+        <!-- Subsections -->
         {% for sub in post.subsections.all %}
-            <h3 class="mt-2 mb-4 ml-0 text-3xl font-semibold">{{ sub.sub_title }}</h3>
->>>>>>> fa29263 ( update the ui page and add some feature)
-            <p class="mb-6 text-zinc-500 text-sm">{{ sub.sub_content|linebreaksbr }}</p>
+            <h3 class="mt-4 sm:mt-6 mb-2 sm:mb-4 text-xl sm:text-2xl md:text-3xl font-semibold">{{ sub.sub_title }}</h3>
+            <p class="mb-4 sm:mb-6 text-zinc-500 text-sm sm:text-base">{{ sub.sub_content|linebreaksbr }}</p>
         {% empty %}
-            <p class="text-zinc-400">No subsections yet.</p>
+            <p class="text-zinc-400 text-sm sm:text-base">No subsections yet.</p>
         {% endfor %}
 
-        <p><small>Created: {{ post.created_date }}</small></p>
-        <hr class="mb-4 mt-8 ">
+        <p class="text-gray-400 text-xs sm:text-sm"><small>Created: {{ post.created_date }}</small></p>
+        <hr class="mt-6 mb-2 sm:mt-8 sm:mb-8 border-gray-500">
     </article>
-    {% endfor %}
+  {% endfor %}
+{% else %}
+  <p class="text-center text-gray-500 mt-10 text-sm sm:text-base">Please <a href="{% url 'login' %}" class="text-blue-600 hover:underline">login</a> to view posts.</p>
+{% endif %}
 {% endblock %}
+
+

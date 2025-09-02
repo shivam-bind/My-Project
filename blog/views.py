@@ -1,23 +1,17 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Post
-
-from .forms import PostForm, BlogSubSectionForm
 from .forms import PostForm, BlogSubSectionForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-# from django.contrib.auth.views import LoginView
-
-
-
-# class CustomLoginView(LoginView):
-#     template_name = "blog/login.html"
-#     authentication_form = CustomLoginForm
 
 
 
 def post_list(request):
-    posts = Post.objects.all().order_by('-created_date')
-    return render(request,'blog/post_list.html',{'posts':posts})
+    if request.user.is_authenticated:
+        posts = Post.objects.all().order_by('-created_date')
+        return render(request,'blog/post_list.html',{'posts':posts})
+    else:
+        return redirect('login')
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -41,7 +35,7 @@ def post_new(request):
     else:
         form = PostForm()
         formset = BlogSubSectionForm()
-    return render(request, 'blog/post_edit.html', {'form': form, 'formset': formset})
+    return render(request, 'blog/create_post.html', {'form': form, 'formset': formset})
 
 
 
@@ -56,7 +50,7 @@ def signup_view(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 @login_required
-def post_edit(request, pk):
+def create_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
@@ -67,7 +61,7 @@ def post_edit(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/post_edit.html', {'form': form})
+    return render(request, 'blog/create_post.html', {'form': form})
 
 
 @login_required
@@ -92,9 +86,11 @@ def edit_post(request, pk):
         return redirect('post_detail')  # unauthorized access → redirect
 
     if request.method == 'POST':
-        form = PostForm(request.POST, instance=post)
-        if form.is_valid():
+        form = PostForm(request.POST,request.FILES, instance=post)
+        formset = BlogSubSectionForm(request.POST, instance=post)
+        if form.is_valid() and formset.is_valid():
             form.save()
+            formset.save()
             return redirect('post_detail', pk=post.pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
@@ -103,7 +99,8 @@ def edit_post(request, pk):
             return redirect('select_post')
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/edit_post.html', {'form': form , 'post':post})
+        formset = BlogSubSectionForm(instance=post)
+    return render(request, 'blog/edit_post.html', {'form': form , 'post':post , 'formset':formset})
 
 @login_required
 def delete_post(request, pk):

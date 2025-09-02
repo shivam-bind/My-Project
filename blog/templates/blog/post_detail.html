@@ -1,5 +1,75 @@
 {% extends 'blog/base.html' %}
+
 {% block content %}
+<div class="container mx-auto px-2 py-4">
+  <article class="bg-white shadow-md rounded-xl p-6 sm:p-10">
+    
+    <!-- Post Title -->
+    <h1 class="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 hover:text-red-500 visited:text-purple-600 transition">
+      {{ post.title }}
+    </h1>
+
+    <!-- Meta Info -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500 mb-6">
+      <p>👤 Author: <span class="font-medium text-gray-700">{{ post.author.username }}</span></p>
+      <p>📅 Created: {{ post.created_date }}</p>
+    </div>
+
+    <!-- Post Image -->
+    {% if post.image %}
+      <img src="{{ post.image.url }}" 
+           alt="{{ post.title }}" 
+           class="w-full mb-6 sm:mb-8 rounded-lg object-cover">
+    {% endif %}
+
+    <!-- Post Content -->
+    <p class="mb-4 sm:mb-6 text-zinc-500 text-sm sm:text-base">
+      {{ post.content|linebreaksbr }}
+    </p>
+    <hr class="mb-6">
+
+    <!-- Subsections -->
+    <div class="space-y-6">
+      {% for sub in post.subsections.all %}
+        <div>
+          <h3 class="text-xl sm:text-2xl font-semibold mb-2 text-gray-800">
+            {{ sub.sub_title }}
+          </h3>
+          <p class="mb-4 sm:mb-6 text-zinc-500 text-sm sm:text-base">
+            {{ sub.sub_content|linebreaksbr }}
+          </p>
+        </div>
+      {% empty %}
+        <p class="text-gray-400 italic">No subsections yet.</p>
+      {% endfor %}
+    </div>
+
+    <!-- Buttons (Only for Owner) -->
+    {% if user.is_authenticated and user == post.author %}
+      <div class="mt-8 flex flex-col sm:flex-row gap-4">
+        <!-- Edit Button -->
+        <a href="{% url 'edit_post' pk=post.pk %}" 
+           class="w-full sm:w-auto px-4 py-2 bg-blue-600 text-white rounded-lg text-center hover:bg-blue-700 transition">
+          ✏️ Edit
+        </a>
+
+        <!-- Delete Button -->
+        <a href="{% url 'delete_post' pk=post.pk %}" 
+           class="w-full sm:w-auto px-4 py-2 bg-red-600 text-white rounded-lg text-center hover:bg-red-700 transition">
+          🗑️ Delete
+        </a>
+      </div>
+    {% endif %}
+  </article>
+</div>
+{% endblock %}
+
+
+
+
+
+
+<!-- 
 <article class="font-sans mb-8 w-full">
     <h1 class="mt-4 mb-4 ml-0 text-5xl font-bold hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition">{{ post.title }}</h1>
 
@@ -10,7 +80,7 @@
     <p class="mb-4 text-zinc-500 text-sm">{{ post.content|linebreaksbr }}</p>
     <hr class="mb-4">
 
-    <!-- Subsections Loop -->
+  
     {% for sub in post.subsections.all %}
         <h3 class="mt-2 mb-4 ml-2 text-3xl font-semibold">{{ sub.sub_title }}</h3>
         <p class="mb-6 text-zinc-500 text-sm">{{ sub.sub_content|linebreaksbr }}</p>
@@ -20,5 +90,4 @@
 
     <p><small>Created: {{ post.created_date }}</small></p>
 </article>
-
-{% endblock %}
+-->
