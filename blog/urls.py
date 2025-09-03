@@ -12,6 +12,7 @@ urlpatterns = [
     path('select/', views.select_post, name='select_post'),
     path('edit/<int:pk>/', views.edit_post, name='edit_post'),
     path('delete/<int:pk>/', views.delete_post, name='delete_post'),
-
+    path('subsection/<int:pk>/edit/', views.subsection_edit, name='subsection_edit'),
+    path('subsection/<int:pk>/delete/', views.subsection_delete, name='subsection_delete'),
 
 ]

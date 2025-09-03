@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import Post
+from .models import Post, BlogSubSection
 from .forms import PostForm, BlogSubSectionForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
@@ -85,7 +85,7 @@ def select_post(request):
 def edit_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if post.author != request.user:
-        return redirect('post_detail')  # unauthorized access → redirect
+        return redirect('post-list')  # unauthorized access → redirect
 
     if request.method == 'POST':
         form = PostForm(request.POST,request.FILES, instance=post)
@@ -99,22 +99,46 @@ def edit_post(request, pk):
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             form.save()
-            return redirect('select_post')
+            return redirect('post_detail',pk=post.pk)
     else:
         form = PostForm(instance=post)
         formset = BlogSubSectionForm(instance=post)
-    return render(request, 'blog/edit_post.html', {'form': form , 'post':post , 'formset':formset})
+    return render(request, 'blog/edit_post.html', {'form': form , 'post':post})
 
 @login_required
 def delete_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if post.author != request.user:
-        return redirect('post_detail')
+        return redirect('post-list')
 
     if request.method == 'POST':
         post.delete()
-        return redirect('post_detail')
-    if request.method == "POST":
-        post.delete()
-        return redirect('select_post')
+        return redirect('post-list')
     return render(request, 'blog/delete_post.html', {'post': post})
+
+
+
+
+def subsection_edit(request, pk):
+    subsection = get_object_or_404(BlogSubSection, pk=pk)
+
+    if request.method == "POST":
+        form = BlogSubSectionForm(request.POST, instance=subsection)
+        if form.is_valid():
+            form.save()
+            return redirect("post_detail", pk=subsection.blog.pk)  # edit hone ke baad parent post ke detail page pe redirect
+    else:
+        form = BlogSubSectionForm(instance=subsection)
+
+    return render(request, "blog/subsection_edit.html", {"form": form})
+
+
+def subsection_delete(request, pk):
+    subsection = get_object_or_404(BlogSubSection, pk=pk)
+
+    if request.method == "POST":
+        post_id = subsection.blog.pk
+        subsection.delete()
+        return redirect("post_detail", pk=post_id)  # delete hone ke baad parent post ke detail page pe redirect
+
+    return render(request, "blog/subsection_delete.html", {"subsection": subsection})
