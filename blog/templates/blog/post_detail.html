@@ -63,31 +63,3 @@
   </article>
 </div>
 {% endblock %}
-
-
-
-
-
-
-<!-- 
-<article class="font-sans mb-8 w-full">
-    <h1 class="mt-4 mb-4 ml-0 text-5xl font-bold hover:text-red-500 visited:text-purple-600 hover:shadow-lg rounded trnsform transition">{{ post.title }}</h1>
-
-    {% if post.image %}
-        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full mb-12 rounded">
-    {% endif %}
-
-    <p class="mb-4 text-zinc-500 text-sm">{{ post.content|linebreaksbr }}</p>
-    <hr class="mb-4">
-
-  
-    {% for sub in post.subsections.all %}
-        <h3 class="mt-2 mb-4 ml-2 text-3xl font-semibold">{{ sub.sub_title }}</h3>
-        <p class="mb-6 text-zinc-500 text-sm">{{ sub.sub_content|linebreaksbr }}</p>
-    {% empty %}
-        <p class="text-zinc-400">No subsections yet.</p>
-    {% endfor %}
-
-    <p><small>Created: {{ post.created_date }}</small></p>
-</article>
--->

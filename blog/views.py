@@ -72,7 +72,9 @@ def select_post(request):
     if request.method == "POST":
         post_id = request.POST.get('selected_post')
         if post_id:
-            selected_post = get_object_or_404(Post, id=post_id)
+            selected_post = get_object_or_404(Post, id=post_id, author=request.user)
+
+    posts = Post.objects.filter(author=request.user)
 
     return render(request, 'registration/select_post.html', {
         'posts': posts,
@@ -92,6 +94,7 @@ def edit_post(request, pk):
             form.save()
             formset.save()
             return redirect('post_detail', pk=post.pk)
+        
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
@@ -115,7 +118,3 @@ def delete_post(request, pk):
         post.delete()
         return redirect('select_post')
     return render(request, 'blog/delete_post.html', {'post': post})
-
-
-
-
