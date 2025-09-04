@@ -9,7 +9,7 @@
       {{ post.title }}
     </h1>
 
-    <!-- Meta Info -->
+  
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500 mb-6">
       <p>👤 Author: <span class="font-medium text-gray-700">{{ post.author.username }}</span></p>
       <p>📅 Created: {{ post.created_date }}</p>
@@ -27,22 +27,17 @@
       {{ post.content|linebreaksbr }}
     </p>
     <hr class="mb-6">
-    <!-- </div> -->
+  
 
     <!-- Buttons (Only for Owner) -->
     {% if user.is_authenticated and user == post.author %}
-      <div class="mt-8 flex flex-col sm:flex-row gap-4">
-        <!-- Edit Button -->
+    
         <a href="{% url 'edit_post' pk=post.pk %}" 
-           class="text-blue-600 hover:underline">
-          ✏️ Edit
-        </a>
-        <!-- Delete Button -->
+           class="text-blue-600 hover:underline">Edit</a> |
+        
         <a href="{% url 'delete_post' pk=post.pk %}" 
-           class="text-red-600 hover:underline">
-          🗑️ Delete
-        </a>
-      </div>
+           class="text-red-600 hover:underline">Delete</a>
+    
     
 
     {% for subsection in post.subsections.all %}
@@ -50,14 +45,14 @@
         <h3 class="mt-4 sm:mt-6 mb-2 sm:mb-4 text-xl sm:text-2xl md:text-3xl font-semibold">{{ subsection.sub_title }}</h3>
         <p class="mb-4 sm:mb-6 text-zinc-500 text-sm sm:text-base">{{ subsection.sub_content|linebreaksbr }}</p>
         <hr class="mb-6">
-      <div class="mt-8 flex flex-col sm:flex-row gap-4"></div>
+      
 
         <a href="{% url 'subsection_edit' subsection.pk %}" 
            class="text-blue-600 hover:underline">Edit</a> | 
 
         <a href="{% url 'subsection_delete' subsection.pk %}" 
            class="text-red-600 hover:underline">Delete</a>
-      </div>
+      
   {% endfor %}
 {% endif %}
 

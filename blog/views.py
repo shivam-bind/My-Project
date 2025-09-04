@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .models import Post, BlogSubSection
 from .forms import PostForm, BlogSubSectionForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.password_validation import get_default_password_validators
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -47,7 +48,10 @@ def signup_view(request):
             return redirect('login')  # redirect to login after successful signup
     else:
         form = UserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form})
+
+    validators = get_default_password_validators()
+    password_help_texts = [validator.get_help_text() for validator in validators]
+    return render(request, 'registration/signup.html', {'form': form, "password_help_texts": password_help_texts})
 
 @login_required
 def create_post(request, pk):
