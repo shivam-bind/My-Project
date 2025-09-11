@@ -1,13 +1,80 @@
-            {% extends 'blog/base.html' %}
-            
-            {% block content %}
+{% extends 'blog/base.html' %}
 
-                {% for post in posts %}
-                <article class="post">
-                    <time class"date">published: {{ post.published_date }}</time>
-                    <h2><a href="">{{ post.title }}</a></h2>
-                    <p>{{ post.text|linebreaksbr }}</p>
-                </article>
-                {% endfor %}
-            {% endblock %}
-            
+{% block content %}
+{% if user.is_authenticated %}
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white text-center py-16 md:py-24 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+           alt="Hero Background"
+           class="w-full h-full object-cover opacity-40">
+    </div>
+    
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-4">
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-4 animate-fade-in">
+        Welcome to <span class="text-yellow-400">MyBlog</span>
+      </h1>
+      <p class="text-base md:text-xl mb-6 text-gray-200">Express yourself. Discover stories. Inspire the world 🌎</p>
+      <a href="{% url 'post_new' %}" 
+         class="inline-block bg-yellow-400 text-gray-900 px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-yellow-300 hover:scale-105 transition transform duration-300">
+        Start Writing ✍️
+      </a>
+    </div>
+  </section>
+<!-- Post Content -->
+     <div class="container mx-auto px-0 py-0 pr-1 pl-1"></div>
+    {% for post in posts %}
+      <article class="bg-white shadow-md rounded-xl p-4 mr-1 ml-1 sm:p-8">
+          
+          <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 text-gray-800 dark:text-gray-100 hover:text-red-500 transition">
+            <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+          </h1>
+        
+        <!-- Post Image -->
+        {% if post.image %}
+          <a href="{% url 'post_detail' pk=post.pk %}" class="block overflow-hidden">
+            <div class="aspect-w-16 aspect-h-9">
+              <img src="{{ post.image.url }}" alt="{{ post.title }}" 
+                   class="w-full mb-6 sm:mb-8 rounded-lg object-cover">
+            </div>
+          </a>
+        {% endif %}
+
+          <p class="mb-2 mt-0 text-gray-600 dark:text-gray-600 text-base sm:text-sm md:text-lg lg:text-lg leading-snug sm:leading-relaxed md:leading-loose">
+            {{ post.content|linebreaksbr }}
+          </p>
+
+          <!-- Subsections -->
+          {% for sub in post.subsections.all %}
+            <h2 class="mt-2 mb-1 text-lg sm:text-xl md:text-2xl lg:text-2xl font-semibold text-gray-600 dark:text-gray-100">{{ sub.sub_title }}</h2>
+            <p class="mb-2 mt-2 text-gray-600 dark:text-gray-600 text-base sm:text-sm md:text-lg lg:text-lg leading-snug sm:leading-relaxed md:leading-loose">{{ sub.sub_content|linebreaksbr }}</p>
+          {% empty %}
+            <p class="text-gray-400 text-sm">No subsections yet.</p>
+          {% endfor %}
+
+          <!-- Footer -->
+          <div class="mt-auto pt-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between text-xs text-gray-400">
+            <span>🕒 {{ post.created_date|date:"M d, Y" }}</span>
+            <a href="{% url 'post_detail' pk=post.pk %}" class="text-blue-500 hover:underline">Read More →</a>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </section>
+
+{% else %}
+  <!-- Guest Message -->
+  <div class="flex items-center justify-center min-h-[60vh]">
+    <p class="text-center text-gray-500 text-lg">
+      Please 
+      <a href="{% url 'login' %}" class="text-blue-600 hover:underline font-semibold">login</a> 
+      to view posts.
+    </p>
+  </div>
+{% endif %}
+{% endblock %}
+
+

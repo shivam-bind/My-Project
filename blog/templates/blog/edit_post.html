@@ -1,16 +1,44 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+<div class="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+  <div class="bg-white shadow-xl rounded-2xl p-6 sm:p-8 w-full max-w-lg">
+    
+    {% if user.is_authenticated %}
+      <h2 class="text-xl sm:text-2xl font-bold text-center text-gray-800 mb-6">✏️ Edit Post</h2>
 
-{% if user.is_authenticated%}
-   
-
-   <h2>Edit Post</h2>
-    <form method="POST">
+      <form method="POST" enctype="multipart/form-data" class="space-y-5">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Changes</button>
-    </form>
 
-{%endif%}
+        <!-- Title -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+          {{ form.title }}
+        </div>
+
+        <!-- Content -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Content</label>
+          {{ form.content }}
+        </div>
+
+        <!-- Image -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Image</label>
+          {% if form.instance.image %}
+            <img src="{{ form.instance.image.url }}" class="mb-2 w-full rounded" alt="Post Image">
+          {% endif %}
+          {{ form.image }}
+
+        <button type="submit" 
+                class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition">
+          💾 Save Changes
+        </button>
+      </form>
+    {% endif %}
+    
+  </div>
+</div>
 {% endblock %}
+
+

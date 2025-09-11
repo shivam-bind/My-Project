@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-6 mt-10">
+    <h2 class="text-xl font-bold text-red-600 mb-4">⚠️ Delete Subsection</h2>
+
+    <p>Are you sure you want to delete subsection <b>"{{ subsection.sub_title }}"</b>?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg">
+            Yes, Delete
+        </button>
+        <a href="{% url 'post_detail' pk=subsection.blog.pk %}" 
+           class="ml-2 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
+            Cancel
+        </a>
+    </form>
+</div>
+{% endblock %}

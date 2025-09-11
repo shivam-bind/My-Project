@@ -2,27 +2,58 @@
 
 {% block content %}
 
+<div class="max-w-2xl w-full mx-auto mt-10 px-4 sm:px-0 bg-white shadow-xl rounded-2xl p-6 sm:p-8">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center">📅 Select a Blog Post</h2>
+    
+    {% if posts %}
+        <form method="POST" class="space-y-4">
+            {% csrf_token %}
+            <div>
+                <label for="selected_post" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
+                    Choose Post
+                </label>
+                <select name="selected_post" id="selected_post" 
+                        class="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none text-sm sm:text-base">
+                    <option value="">-- Select Post --</option>
+                    {% for post in posts %}
+                        <option value="{{ post.id }}" {% if selected_post and selected_post.id == post.id %}selected{% endif %}>
+                            {{ post.title }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
 
-    <h2>Select a Blog Post</h2>
-    <form method="POST">
-        {% csrf_token %}
-        <select name="selected_post">
-            <option value="">-- Select Post --</option>
-            {% for post in posts %}
-                <option value="{{ post.id }}" {% if selected_post and selected_post.id == post.id %}selected{% endif %}>
-                    {{ post.title }}
-                </option>
-            {% endfor %}
-        </select>
-        <button type="submit">Load Post</button>
-    </form>
-
-    {% if selected_post %}
-        <h3>{{ selected_post.title }}</h3>
-        <p>{{ selected_post.content }}</p>
-        <div class="actions">
-            <a href="{% url 'edit_post' selected_post.id %}" class="edit-btn">Edit</a>
-            <a href="{% url 'delete_post' selected_post.id %}" class="delete-btn">Delete</a>
+            <button type="submit"  
+                    class="w-full py-2 sm:py-3 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm sm:text-base">
+                Load Post
+            </button>
+        </form>
+    {% else %}
+        
+        <div class="text-center bg-yellow-50 border border-yellow-300 text-yellow-800 px-4 py-3 rounded-lg">
+            ⚠️ If you have not created any post yet then you cannot edit or delete any post
         </div>
     {% endif %}
-{% endblock%}
+
+    {% if selected_post %}
+        <div class="mt-8 p-4 sm:p-6 bg-gray-50 rounded-xl border">
+            <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">{{ selected_post.title }}</h3>
+            <p class="text-gray-600 mb-4 text-sm sm:text-base">{{ selected_post.content }}</p>
+            <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0">
+                <a href="{% url 'edit_post' selected_post.id %}"  
+                   class="flex-1 text-center py-2 sm:py-3 px-4 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition text-sm sm:text-base">
+                   ✏️ Edit
+                </a>
+                <a href="{% url 'delete_post' selected_post.id %}" 
+                   class="flex-1 text-center py-2 sm:py-3 px-4 bg-red-600 text-white rounded-lg hover:bg-red-700 transition text-sm sm:text-base">
+                   🗑 Delete
+                </a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+
+
