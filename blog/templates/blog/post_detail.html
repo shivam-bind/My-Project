@@ -23,7 +23,7 @@
     {% endif %}
 
     <!-- Post Content -->
-    <p class="mb-4 sm:mb-6 text-gray-500 text-base sm:text-sm md:text-lg lg:text-lg leading-snug sm:leading-relaxed md:leading-loose">
+    <p class="mb-4 sm:mb-6 text-gray-600 dark:text-gray-600 text-base sm:text-sm md:text-lg lg:text-lg leading-snug sm:leading-relaxed md:leading-looses">
       {{ post.content|linebreaksbr }}
     </p>
     <hr class="mb-6">
@@ -43,7 +43,7 @@
     {% for subsection in post.subsections.all %}
     
         <h2 class="mt-4 sm:mt-6 mb-2 sm:mb-4 text-gray-600 dark:text-gray-200 text-lg sm:text-xl md:text-2xl lg:text-2xl font-semibold">{{ subsection.sub_title }}</h2>
-        <p class="mb-4 sm:mb-6 text-gray-500 text-base sm:text-sm md:text-lg lg:text-lg leading-snug sm:leading-relaxed md:leading-loose">{{ subsection.sub_content|linebreaksbr }}</p>
+        <p class="mb-4 sm:mb-6 text-gray-600 dark:text-gray-600 text-base sm:text-sm md:text-lg lg:text-lg leading-snug sm:leading-relaxed md:leading-loose">{{ subsection.sub_content|linebreaksbr }}</p>
         <hr class="mb-6">
       
 

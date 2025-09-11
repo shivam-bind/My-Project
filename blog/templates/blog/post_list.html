@@ -38,19 +38,19 @@
           <a href="{% url 'post_detail' pk=post.pk %}" class="block overflow-hidden">
             <div class="aspect-w-16 aspect-h-9">
               <img src="{{ post.image.url }}" alt="{{ post.title }}" 
-                   class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                   class="w-full mb-6 sm:mb-8 rounded-lg object-cover">
             </div>
           </a>
         {% endif %}
 
-          <p class="mb-2 mt-4 text-gray-400 dark:text-gray-400 text-base sm:text-sm md:text-lg lg:text-lg leading-snug sm:leading-relaxed md:leading-loose">
+          <p class="mb-2 mt-0 text-gray-600 dark:text-gray-600 text-base sm:text-sm md:text-lg lg:text-lg leading-snug sm:leading-relaxed md:leading-loose">
             {{ post.content|linebreaksbr }}
           </p>
 
           <!-- Subsections -->
           {% for sub in post.subsections.all %}
             <h2 class="mt-2 mb-1 text-lg sm:text-xl md:text-2xl lg:text-2xl font-semibold text-gray-600 dark:text-gray-100">{{ sub.sub_title }}</h2>
-            <p class="mb-2 mt-2 text-gray-400 dark:text-gray-400 text-base sm:text-sm md:text-lg lg:text-lg leading-snug sm:leading-relaxed md:leading-loose">{{ sub.sub_content|linebreaksbr }}</p>
+            <p class="mb-2 mt-2 text-gray-600 dark:text-gray-600 text-base sm:text-sm md:text-lg lg:text-lg leading-snug sm:leading-relaxed md:leading-loose">{{ sub.sub_content|linebreaksbr }}</p>
           {% empty %}
             <p class="text-gray-400 text-sm">No subsections yet.</p>
           {% endfor %}
